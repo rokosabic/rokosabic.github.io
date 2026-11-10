@@ -120,3 +120,4 @@ footer p { margin: 0 0 8px; }
   .paper img { max-width: 160px; }
   h3 { font-size: 26px; }
 }
+.paper + .paper { margin-top: 16px; }
