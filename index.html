@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Roko Šabić</title>
+  <meta name="description" content="Roko Šabić, software engineer in Zagreb. Projects, work and writing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="top">
+      <a href="#" class="name">roko šabić</a>
+      <nav>
+        <a href="#projects">projects</a>
+        <a href="#work">work</a>
+        <a href="#writing">writing</a>
+        <a href="#contact">contact</a>
+        <button id="theme" aria-label="Toggle dark mode">dark</button>
+      </nav>
+    </header>
+
+    <section class="intro">
+      <p class="hello">Hi, I'm Roko.</p>
+      <p>I write Rails for a living at <a href="https://infinum.com">Infinum</a>, I'm in the last year of a Software Engineering master's at FER in Zagreb, and I build side projects in TypeScript when I should probably be studying.</p>
+      <p>This page collects the projects I'm proud of, from university team projects to things real people use.</p>
+      <ul class="now">
+        <li><span>now</span>backend work on a large Rails platform at Infinum</li>
+        <li><span>studying</span>MEng, Software Engineering &amp; Information Systems, FER (2025–2027)</li>
+        <li><span>off-screen</span>basketball, running</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2><span class="n">§1</span> Projects <small>ordered by how much there is under the hood</small></h2>
+
+      <table class="index">
+        <thead><tr><th>#</th><th>project</th><th>what</th><th>year</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td><a href="#attendtrack">AttendTrack</a></td><td>university attendance system · team · used at FER</td><td>2025/26</td></tr>
+          <tr><td>02</td><td><a href="#euscan">EUScan</a></td><td>EU compliance scanner · SaaS</td><td>2026</td></tr>
+          <tr><td>03</td><td><a href="#nomad">Nomad</a></td><td>trip planner · bachelor's thesis</td><td>2024/25</td></tr>
+          <tr><td>04</td><td><a href="#smen">SMEN</a></td><td>student mentoring platform · team · for KING ICT</td><td>2024/25</td></tr>
+          <tr><td>05</td><td><a href="#alumna">Alumna</a></td><td>exam-prep school website · client · live</td><td>2026</td></tr>
+          <tr><td>06</td><td><a href="#small">Margo, Focus Tide, Vestors</a></td><td>smaller side projects</td><td>2026</td></tr>
+        </tbody>
+      </table>
+
+      <article id="attendtrack" class="project">
+        <header>
+          <span class="num">01</span>
+          <div>
+            <h3>AttendTrack <span class="alt">Evidencija prisutnosti</span></h3>
+            <p class="sub">Attendance tracking for lectures, built for and used at FER. Team project, 2025/26.</p>
+          </div>
+        </header>
+        <div class="body">
+          <div class="text">
+            <p>The lecturer starts a lecture and puts a rotating QR code on the projector. Students scan it on their phones, and the lecturer's screen updates live.</p>
+            <p><b>My favourite part: AI head-counting.</b> I added a feature where the lecturer takes a photo of the room and the backend counts the people in it. A YOLOv8 model, exported to ONNX, runs inside the .NET server, so no external AI service is involved. Each count is saved per lecture, with history and a manual recount, so it can be compared with the number of check-ins and catch people signing in for absent friends.</p>
+            <ul>
+              <li>Rotating QR plus manual codes, grace periods, lectures that span several hours</li>
+              <li>CSV/XLSX student import, score export, in-lecture questions with points</li>
+              <li>Roles for student, associate, professor and admin; Google, Microsoft and AAI@EduHr sign-in</li>
+              <li>Live updates over SignalR</li>
+            </ul>
+            <p class="stack">ASP.NET Core · C# · EF Core · React · TypeScript · SignalR · YOLOv8 / ONNX Runtime · OIDC</p>
+          </div>
+          <div class="media">
+            <figure class="wide"><img src="assets/shots/evid-lecturer-home.jpg" alt="Lecturer dashboard with a live lecture" loading="lazy" /><figcaption>lecturer dashboard, one lecture live</figcaption></figure>
+            <figure><img src="assets/shots/evid-course-students.jpg" alt="Student roster" loading="lazy" /><figcaption>roster with import/export</figcaption></figure>
+            <figure><img src="assets/shots/evid-student-home.jpg" alt="Student view" loading="lazy" /><figcaption>student view</figcaption></figure>
+          </div>
+        </div>
+      </article>
+
+      <article id="euscan" class="project">
+        <header>
+          <span class="num">02</span>
+          <div>
+            <h3>EUScan</h3>
+            <p class="sub">Checks a company's website against EU rules and shows what to fix. Solo, 2026.</p>
+          </div>
+        </header>
+        <div class="body single">
+          <div class="text">
+            <p>EUScan crawls a site with Playwright and checks it against three EU rulebooks: accessibility (axe-core), AI transparency and product information. Every finding points to the exact element in the code, comes with a suggested fix that has been checked, and is re-tested on a schedule.</p>
+            <ul>
+              <li>pnpm monorepo with separate product and prospecting databases</li>
+              <li>A rules engine whose legal references were reviewed by a person, plus a CI check that stops the product from claiming more than the rules support</li>
+              <li>Strict TypeScript, Vitest, Docker, deployed on Railway</li>
+            </ul>
+            <p class="stack">TypeScript · Node.js · Playwright · axe-core · PostgreSQL · Prisma · Docker · Railway</p>
+          </div>
+        </div>
+      </article>
+
+      <article id="nomad" class="project">
+        <header>
+          <span class="num">03</span>
+          <div>
+            <h3>Nomad</h3>
+            <p class="sub">Trip planner: flights, hotels, budget, attractions, weather and a packing list. Bachelor's thesis, 2024/25.</p>
+          </div>
+        </header>
+        <div class="body">
+          <div class="text">
+            <p><b>Why a dataset instead of travel APIs.</b> Booking and flight APIs such as Amadeus, Skyscanner and Booking.com are built for travel businesses. Production access needs a company account or partnership, and the free test tiers return only limited, cached sample data. A student project had no realistic way to get live prices and availability.</p>
+            <p>So I built the data layer myself. I took public datasets of airports, airline routes and hotels, cleaned and reconciled them in Python with pandas, and imported the result into Postgres:</p>
+            <ul>
+              <li>1,542 airports with every direct route, distance, flight time and carrier</li>
+              <li>A hotel list filtered to cities that also have an airport, so every destination has both flights and places to stay</li>
+              <li>Ratings normalised, duplicate and mismatched city names fixed, and everything batch-loaded into Supabase with Python scripts</li>
+            </ul>
+            <p>The rest of the app (budgets, expenses, packing lists, attractions) runs on top of that data.</p>
+            <p class="stack">Next.js · TypeScript · Supabase / PostgreSQL · Python · pandas · Tailwind</p>
+          </div>
+          <div class="media">
+            <figure class="wide"><img src="assets/shots/nomad-trip.jpg" alt="Trip overview" loading="lazy" /><figcaption>a trip: flight, hotel, budget, packing</figcaption></figure>
+            <figure><img src="assets/shots/nomad-trips.jpg" alt="All trips" loading="lazy" /><figcaption>trips</figcaption></figure>
+            <figure><img src="assets/shots/nomad-location.jpg" alt="Map with saved places" loading="lazy" /><figcaption>saved places</figcaption></figure>
+          </div>
+        </div>
+      </article>
+
+      <article id="smen" class="project">
+        <header>
+          <span class="num">04</span>
+          <div>
+            <h3>SMEN</h3>
+            <p class="sub">A mentoring platform for students: topics, workshops, mentor applications. Built for KING ICT as part of a collaboration with the Software Engineering course at FER. Team project, 2024/25.</p>
+          </div>
+        </header>
+        <div class="body">
+          <div class="text">
+            <p>Students browse topics and apply for workshops. Mentors propose workshops, and admins approve mentors and workshops. The interesting part was the backend and auth.</p>
+            <ul>
+              <li>Spring Boot 3 REST API with JPA on PostgreSQL</li>
+              <li>Keycloak handles login, registration and roles; Spring Security validates the JWTs</li>
+              <li>Workshop lifecycle with statuses, applications and ratings</li>
+              <li>Activity log of what every user did</li>
+            </ul>
+            <p class="stack">Java 17 · Spring Boot · Spring Security · Keycloak · PostgreSQL · React · TanStack Router/Query · Docker</p>
+          </div>
+          <div class="media">
+            <figure class="wide diagram">
+              <svg viewBox="0 0 640 230" role="img" aria-label="SMEN architecture: React app talks to Spring Boot API and Keycloak; API validates JWTs and stores data in PostgreSQL">
+                <g class="box"><rect x="10" y="85" width="150" height="60" /><text x="85" y="112">React SPA</text><text x="85" y="130" class="s">TanStack · AntD</text></g>
+                <g class="box"><rect x="245" y="15" width="150" height="60" /><text x="245" y="0" class="s" style="text-anchor:start"></text><text x="320" y="42">Keycloak</text><text x="320" y="60" class="s">login · roles</text></g>
+                <g class="box accent"><rect x="245" y="155" width="150" height="60" /><text x="320" y="182">Spring Boot API</text><text x="320" y="200" class="s">JPA · Security</text></g>
+                <g class="box"><rect x="480" y="155" width="150" height="60" /><text x="555" y="182">PostgreSQL</text><text x="555" y="200" class="s">topics · workshops</text></g>
+                <path d="M160 100 L245 50" /><text x="190" y="62" class="s">sign in</text>
+                <path d="M160 130 L245 180" /><text x="186" y="176" class="s">REST + JWT</text>
+                <path d="M320 155 L320 75" class="dash" /><text x="328" y="120" class="s" style="text-anchor:start">validate token</text>
+                <path d="M395 185 L480 185" />
+              </svg>
+              <figcaption>how the pieces talk</figcaption>
+            </figure>
+            <figure><img src="assets/shots/smen-add-workshop.jpg" alt="Adding a workshop" loading="lazy" /><figcaption>mentor proposes a workshop</figcaption></figure>
+            <figure><img src="assets/shots/smen-themes.jpg" alt="Topics list" loading="lazy" /><figcaption>topics</figcaption></figure>
+          </div>
+        </div>
+      </article>
+
+      <article id="alumna" class="project">
+        <header>
+          <span class="num">05</span>
+          <div>
+            <h3>Alumna</h3>
+            <p class="sub">Website and sign-up flow for a state-exam prep school in Vinkovci. Client project, live, 2026.</p>
+          </div>
+        </header>
+        <div class="body">
+          <div class="text">
+            <p>A small business needed students to sign up, and the owners needed to see who did without logging into anything technical. Sign-ups are validated, saved in Supabase, copied to a Google Sheet the owners already use, and trigger a confirmation email from the school's own domain.</p>
+            <ul>
+              <li>Per-subject pricing, two course cycles, FAQ, live countdown to the exam</li>
+              <li>Mobile-first, since most visitors are high-school students on phones</li>
+              <li>SEO, sitemap, OG images, and a daily cron so the free-tier database never pauses</li>
+            </ul>
+            <p class="stack">Next.js 16 · React 19 · Supabase · Google Sheets API · Resend · Vercel · <a href="https://alumna-vk.com">alumna-vk.com ↗</a></p>
+          </div>
+          <div class="media alumna">
+            <figure class="wide"><img src="assets/shots/alumna-pricing.jpg" alt="Pricing section" loading="lazy" /><figcaption>subjects &amp; pricing</figcaption></figure>
+            <figure class="phone"><img src="assets/shots/alumna-mobile.jpg" alt="Mobile hero" loading="lazy" /></figure>
+            <figure class="phone"><img src="assets/shots/alumna-mobile-pricing.jpg" alt="Mobile pricing" loading="lazy" /></figure>
+          </div>
+        </div>
+      </article>
+
+      <article id="small" class="project">
+        <header>
+          <span class="num">06</span>
+          <div>
+            <h3>Smaller things</h3>
+            <p class="sub">Side projects, roughly in order of size.</p>
+          </div>
+        </header>
+        <dl class="smalls">
+          <div><dt>Margo</dt><dd>Reads Croatian e-invoices (eRačun, UBL XML), tracks what each supplier charges over time and flags quiet price increases. <i>Python</i></dd></div>
+          <div><dt>Focus Tide</dt><dd>A Pomodoro timer where finished sessions grow a pixel-art aquarium. XP and streaks are calculated in background jobs. <i>Rails · Hotwire · Sidekiq · Canvas</i></dd></div>
+          <div><dt>Vestors</dt><dd>A fake stock market for NBA players, with a ticker tape, sparklines, portfolios and a leaderboard. <i>Next.js · Drizzle · Supabase</i></dd></div>
+        </dl>
+      </article>
+    </section>
+
+    <section id="work">
+      <h2><span class="n">§2</span> Work</h2>
+      <div class="job">
+        <div class="job-head">
+          <h3>Infinum, Zagreb</h3>
+          <p class="when">Software Engineer, Rails team · Aug 2024 – now</p>
+        </div>
+        <p>I work on the backend of a large enterprise Rails platform for an international client: a monolith with 80k+ lines of code, 100+ gems, several connected apps and integrations with a number of external systems. The kind of work I do there:</p>
+        <ul>
+          <li>Security improvements and hardening</li>
+          <li>Data anonymisation and data-privacy work</li>
+          <li>Database performance: indexing, query tuning, cleaning up N+1 queries</li>
+          <li>Large refactors and framework upgrades</li>
+          <li>Containerisation and infrastructure changes</li>
+        </ul>
+        <p>Inside Infinum I've also worked on AI tooling, including an MCP server for an internal company tool. I've run workshops for the backend team, help maintain internal Ruby gems, and represented Infinum at a student job fair.</p>
+        <p class="stack">Ruby on Rails · PostgreSQL · Sidekiq · RSpec · Docker · AWS · Hotwire</p>
+      </div>
+      <div class="edu">
+        <div><b>MEng, Computing</b> (Software Engineering &amp; Information Systems) · FER, University of Zagreb · 2025–2027</div>
+        <div><b>BSc, Computing</b> · FER, University of Zagreb · thesis: Nomad</div>
+      </div>
+    </section>
+
+    <section id="writing">
+      <h2><span class="n">§3</span> Writing</h2>
+      <a class="paper" href="assets/seminar-ai-pm.pdf">
+        <img src="assets/shots/seminar-p-17.jpg" alt="A page from the seminar" loading="lazy" />
+        <div>
+          <p class="when">Seminar · FER · 2026 · in Croatian · PDF</p>
+          <h3>Primjena umjetne inteligencije pri upravljanju projektima</h3>
+          <p>How AI changes the everyday tools of project management (WBS, user stories, Gantt, burndown and velocity, status reports, traceability), with worked examples for ChatGPT, GitHub Copilot, Asana, Monday.com and ClickUp. I made all the charts in it with Python.</p>
+          <span class="dl">Read the PDF →</span>
+        </div>
+      </a>
+    </section>
+
+    <footer id="contact">
+      <p>Want to talk? <a href="mailto:roko.sabic@gmail.com">roko.sabic@gmail.com</a> · <a href="https://linkedin.com/in/rokosabic">LinkedIn</a> · <a href="https://github.com/rokosabic">GitHub</a></p>
+      <p class="tiny">Hand-written HTML and CSS, no framework. Updated November 2026.</p>
+    </footer>
+  </div>
+
+  <div class="lightbox" id="lightbox" hidden><img alt="" /></div>
+  <script>
+    const root = document.documentElement
+    const btn = document.getElementById('theme')
+    const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches
+    const sync = () => { btn.textContent = isDark() ? 'light' : 'dark' }
+    try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t } catch {}
+    sync()
+    btn.onclick = () => {
+      root.dataset.theme = isDark() ? 'light' : 'dark'
+      try { localStorage.setItem('theme', root.dataset.theme) } catch {}
+      sync()
+    }
+    const lb = document.getElementById('lightbox')
+    document.querySelectorAll('.media img').forEach((img) => {
+      img.addEventListener('click', () => { lb.querySelector('img').src = img.src; lb.hidden = false })
+    })
+    lb.onclick = () => { lb.hidden = true }
+  </script>
+</body>
+</html>
