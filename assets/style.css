@@ -124,3 +124,14 @@ footer p { margin: 0 0 8px; }
   h3 { font-size: 26px; }
 }
 .paper + .paper { margin-top: 16px; }
+
+.degree { padding: 22px 0; border-top: 1px dashed var(--rule); }
+.degree:first-of-type { border-top: 0; padding-top: 0; }
+.degree h3 { font-size: 24px; }
+.degree .sub { margin: 2px 0 14px; }
+.courses { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px 8px; }
+.courses li { font-size: 14.5px; padding: 3px 10px; border: 1px solid var(--rule); background: var(--paper); }
+.small-h { margin-bottom: 10px !important; }
+.langs { list-style: none; padding: 0; margin: 0; }
+.langs li { padding: 4px 0; color: var(--soft); }
+.langs b { color: var(--ink); display: inline-block; min-width: 90px; }
